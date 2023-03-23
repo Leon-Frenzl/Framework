@@ -9,17 +9,18 @@ export const Provider ={
 export class DataSource{
     constructor(provider, url)
     {
-        this.connectDatabase(provider, url);
+        const prov = provider;
+        const databaseUrl = url;       
     }
 
-    connectDatabase(provider, url) {
+    connectDatabase() {
         
-        switch (provider){
+        switch (this.prov){
             case Provider.MONGODB:
-                this.connectMongo(url)
+                this.connectMongo(this.databaseUrl)
                 break;
             case Provider.POSTGRESQL:
-                this.connectPostgresql(url)
+                this.connectPostgresql(this.databaseUrl)
                 break;
             default:
                 throw new Error("No Database to Connect found.")

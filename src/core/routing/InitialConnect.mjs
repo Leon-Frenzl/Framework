@@ -7,32 +7,43 @@ const app = express();
 
 const port = 3000;
 
-export function connect()
-{   
-    app.use(
-        '/api-docs',
-        swaggerUi.serve, 
-        swaggerUi.setup(SwaggerDocument)
-      );
-    app.listen(port, ()=>console.log("Listening on Port: " + port));
-    registerAppRoutes();
-}
-
-function registerAppRoutes()
+export class App
 {
-    for (const route of Routes.routes) {
-        app.get(`${route.route}`, (req, res) => res.sendFile(`${route.pathToHtml}`, {root: "./"}));
+    constructor(port)
+    {
+        this.port = port;
     }
 
-    app.get('*', function(req, res){
-        res.sendFile("/app/main.html", {root: "./"});
-      });
+    connect()
+    {   
+        app.use(
+            '/api-docs',
+            swaggerUi.serve, 
+            swaggerUi.setup(SwaggerDocument)
+        );
+        app.listen(port, ()=>console.log("Listening on Port: " + port));
+        this.registerAppRoutes();
+        this.registerApiRoutes();
+    }
+
+    registerAppRoutes()
+    {
+        for (const route of Routes.routes) {
+            app.get(`${route.route}`, (req, res) => res.sendFile(`${route.pathToHtml}`, {root: "./"}));
+        }
+
+        app.get('*', function(req, res){
+            res.sendFile("/app/main.html", {root: "./"});
+        });
+    }
+
+    registerApiRoutes()
+    {
+
+    }
+
 }
 
-function registerApiRoutes()
-{
-
-}
 
 // TODO:
 // - adding generator for API routes

@@ -1,7 +1,7 @@
 {
     "routes": [
         {
-            "api-function": "get",
+            "api-method": "get",
             "route": "/user"
         }
     ]
