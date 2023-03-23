@@ -1,0 +1,20 @@
+{
+    "routes": [
+        {
+            "route": "/",
+            "pathToHtml": "/app/main.html"
+        },
+        {
+            "route": "/about",
+            "pathToHtml": "/app/different.html"
+        },
+        {
+            "route": "/tools",
+            "pathToHtml": "/app/tools.html"
+        },
+        {
+            "route": "/admin",
+            "pathToHtml": "/app/admin.html"
+        }
+    ]  
+}
